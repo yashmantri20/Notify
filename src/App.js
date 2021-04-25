@@ -1,67 +1,22 @@
-import { useEffect, useState } from 'react';
+import React from 'react';
+import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 import './App.css';
-import firebase from './firebase';
-import ReactQuill from 'react-quill';
-import BorderColorIcon from '@material-ui/icons/BorderColor';
-import 'react-quill/dist/quill.snow.css';
 
-function App() {
+import SingleNote from './SingleNote';
 
-  const [notes, setNotes] = useState(null)
-  // const [selectedNoteIndex, setSelectedNoteIndex] = useState(null)
-  // const [selectedNote, setSelectedNote] = useState(null)
+import Home from './Home/Home';
+import Login from './Authentication/Login';
 
-  useEffect(() => {
-    firebase
-      .firestore()
-      .collection('notes')
-      .onSnapshot(serverUpdate => {
-        const notes = serverUpdate.docs.map(_doc => {
-          const data = _doc.data();
-          data['id'] = _doc.id;
-          return data;
-        });
-        setNotes(notes)
-      });
-  }, [])
-
-  const newNote = async () => {
-    const note = {
-      title: 'Untitled',
-      body: ''
-    };
-
-    await firebase
-      .firestore()
-      .collection('notes')
-      .add({
-        title: note.title,
-        body: note.body,
-        timestamp: firebase.firestore.FieldValue.serverTimestamp()
-      });
-    setNotes([...notes, note]);
-  }
-
-  const text = "ays"
+const App = () => {
   return (
-    <div className="App" >
-      <button onClick={newNote}>Add Note</button>
-      {
-        notes && notes.map(n => <h1>{n.title}</h1>)
-      }
-
-      <div style={{ display: 'flex', flexDirection: 'column', width: '100%', justifyContent: 'center', alignItems: 'center' }}>
-        <div>
-          <BorderColorIcon />
-          <input
-
-            placeholder='Note title...'
-          /></div>
-        <ReactQuill value={text} style={{ width: '90%' }} />
-
-      </div>
-    </div>
+    <Router>
+      <Switch>
+        <Route exact path='/' component={Home} />
+        {/* <Route exact path='/login' component={Login} /> */}
+        <Route exact path='/note/:userId/:id' component={SingleNote} />
+      </Switch>
+    </Router>
   );
-}
+};
 
 export default App;

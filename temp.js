@@ -20,20 +20,4 @@
 //         .delete();
 // }
 
-// const noteUpdate = (id, noteObj) => {
-//     firebase
-//         .firestore()
-//         .collection('notes')
-//         .doc(id)
-//         .update({
-//             title: noteObj.title,
-//             body: noteObj.body,
-//             timestamp: firebase.firestore.FieldValue.serverTimestamp()
-//         });
-// }
-
-// const selectNote = (note, index) => {
-//     setSelectedNote(note)
-//     setSelectedNoteIndex(index)
-// }
 
