@@ -36,10 +36,17 @@ const Sidebar = ({
   const signOut = () => {
     auth.signOut();
   };
+
+  const handleDeleteNote = (n) => {
+    if (window.confirm(`Are you sure you want to delete: ${n.title}`)) {
+      deleteNote(n);
+    }
+  };
+
   return (
     <Box>
       <Center className='add-notes'>
-        <Text>Evernote</Text>
+        <Text className='sidebar-title'>Notify</Text>
         <button onClick={newNote} disabled={adding} className='add-btn'>
           <AiFillFileAdd className='icon' />
         </button>
@@ -66,7 +73,7 @@ const Sidebar = ({
                   <Box pl={2}>
                     <AiFillDelete
                       className='icon'
-                      onClick={() => deleteNote(n)}
+                      onClick={() => handleDeleteNote(n)}
                     />
                   </Box>
                 </Flex>

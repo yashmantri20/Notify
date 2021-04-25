@@ -44,9 +44,14 @@
   color: #fff;
 }
 
+.image {
+  width: 700px;
+  height: 700px;
+}
+
 .icon {
   font-size: 23px;
-  color: #fff;
+  cursor: pointer;
 }
 
 .footer {
@@ -88,5 +93,12 @@
 @media only screen and (min-width: 681px) {
   .mobile-home {
     display: none;
+  }
+}
+
+@media only screen and (max-width: 681px) {
+  .image {
+    width: 300px;
+    height: 300px;
   }
 }

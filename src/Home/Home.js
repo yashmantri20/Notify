@@ -1,7 +1,7 @@
 import { Flex, Text } from '@chakra-ui/layout';
 import React, { useEffect, useState } from 'react';
 import { auth, firestore } from '../firebase';
-import Editor from '../Editor';
+import Editor from '../Editor/Editor';
 import { Box } from '@chakra-ui/layout';
 import Loader from '../Loader/Loader';
 import Sidebar from '../Sidebar/Sidebar';
@@ -37,8 +37,6 @@ const Home = () => {
         data['id'] = _doc.id;
         return data;
       });
-      // console.log('object');
-      // console.log(notes);
       setNotes(notes);
       setLoader(false);
     });
@@ -62,7 +60,7 @@ const Home = () => {
 
     const newId = newFromDB.id;
     note = { ...note, id: newId };
-    setNotes([...notes, note]);
+    setNotes([note, ...notes]);
     setAdding(false);
   };
 
@@ -97,79 +95,25 @@ const Home = () => {
   return (
     <>
       {user ? (
-        <>
-          <Box className='container'>
-            <Box className='left-half'>
-              <Box className='container'>
-                <Sidebar
-                  newNote={newNote}
-                  adding={adding}
-                  notes={notes}
-                  selectNote={selectNote}
-                  shareHandler={shareHandler}
-                  id={id}
-                  deleteNote={deleteNote}
-                />
-              </Box>
-            </Box>
-
-            <Box className='mobile-home'>
-              <Flex className='drawer-header'>
-                <Text color='white' my='auto'>
-                  Evernote
-                </Text>
-                <Button
-                  colorScheme='gray'
-                  onClick={onOpen}
-                  float='right'
-                  mt={2}
-                >
-                  <GiHamburgerMenu size='20px' />
-                </Button>
-              </Flex>
-
-              <Box mb={2}>
-                <Drawer isOpen={isOpen} placement='right' onClose={onClose}>
-                  <DrawerOverlay>
-                    <DrawerContent>
-                      <DrawerCloseButton color='white' zIndex={2} />
-                      <Box overflowY='scroll'>
-                        <Sidebar
-                          newNote={newNote}
-                          adding={adding}
-                          notes={notes}
-                          selectNote={selectNote}
-                          shareHandler={shareHandler}
-                          id={id}
-                          deleteNote={deleteNote}
-                        />
-                      </Box>
-                    </DrawerContent>
-                  </DrawerOverlay>
-                </Drawer>
-              </Box>
-            </Box>
-
-            <Box className='right-half'>
-              {selectedNote ? (
-                <Editor selectedNote={selectedNote} noteUpdate={noteUpdate} />
-              ) : (
-                <Box className='note-img'>
-                  <Image
-                    src={notesimg}
-                    width='700px'
-                    height='700px'
-                    draggable={false}
-                  />
-                </Box>
-              )}
+        <Box className='container'>
+          <Box className='left-half'>
+            <Box className='container'>
+              <Sidebar
+                newNote={newNote}
+                adding={adding}
+                notes={notes}
+                selectNote={selectNote}
+                shareHandler={shareHandler}
+                id={id}
+                deleteNote={deleteNote}
+              />
             </Box>
           </Box>
 
-          {/* <Box className='mobile-home'>
+          <Box className='mobile-home'>
             <Flex className='drawer-header'>
               <Text color='white' my='auto'>
-                Evernote
+                Notify
               </Text>
               <Button colorScheme='gray' onClick={onOpen} float='right' mt={2}>
                 <GiHamburgerMenu size='20px' />
@@ -196,21 +140,18 @@ const Home = () => {
                 </DrawerOverlay>
               </Drawer>
             </Box>
+          </Box>
 
-            {selectedNote && window.innerWidth < 681 ? (
+          <Box className='right-half'>
+            {selectedNote ? (
               <Editor selectedNote={selectedNote} noteUpdate={noteUpdate} />
             ) : (
-              <Box className='note-img' height='88vh'>
-                <Image
-                  src={notesimg}
-                  width='300px'
-                  height='300px'
-                  draggable={false}
-                />
+              <Box className='note-img'>
+                <Image className='image' src={notesimg} draggable={false} />
               </Box>
             )}
-          </Box> */}
-        </>
+          </Box>
+        </Box>
       ) : (
         <Login />
       )}

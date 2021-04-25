@@ -2,7 +2,7 @@ import { useState, useEffect, useRef } from 'react';
 import Quill from 'react-quill';
 import 'react-quill/dist/quill.snow.css';
 import { MdTitle } from 'react-icons/md';
-import { Box, Text } from '@chakra-ui/layout';
+import { Box } from '@chakra-ui/layout';
 import { AiOutlineFullscreen, AiOutlineFullscreenExit } from 'react-icons/ai';
 
 const TOOLBAR_OPTIONS = [
@@ -89,7 +89,6 @@ const Editor = ({ selectedNote, noteUpdate }) => {
           modules={{ toolbar: TOOLBAR_OPTIONS }}
         />
       </Box>
-      {/* <Text className='footer'>Made with 💕 by Yash Mantri</Text> */}
     </Box>
   );
 };
