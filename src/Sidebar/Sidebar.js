@@ -46,7 +46,9 @@ const Sidebar = ({
   return (
     <Box>
       <Center className='add-notes'>
-        <Text className='sidebar-title'>Notify</Text>
+        <Text className='sidebar-title'>
+          <Link href='/'>Notify</Link>
+        </Text>
         <button onClick={newNote} disabled={adding} className='add-btn'>
           <AiFillFileAdd className='icon' />
         </button>

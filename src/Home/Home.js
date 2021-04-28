@@ -16,7 +16,8 @@ import {
   Image,
 } from '@chakra-ui/react';
 import { GiHamburgerMenu } from 'react-icons/gi';
-import notesimg from '../assets/notes.svg';
+import notes1 from '../assets/notes1.svg';
+
 import Login from '../Authentication/Login';
 
 const Home = () => {
@@ -147,7 +148,7 @@ const Home = () => {
               <Editor selectedNote={selectedNote} noteUpdate={noteUpdate} />
             ) : (
               <Box className='note-img'>
-                <Image className='image' src={notesimg} draggable={false} />
+                <Image className='image' src={notes1} draggable={false} />
               </Box>
             )}
           </Box>

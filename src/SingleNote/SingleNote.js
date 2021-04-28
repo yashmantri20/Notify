@@ -10,20 +10,28 @@ import Login from '../Authentication/Login';
 import { MdTitle } from 'react-icons/md';
 import { Box } from '@chakra-ui/layout';
 import { AiFillHome } from 'react-icons/ai';
+import Error from '../Error404/Error';
 
 const SingleNote = () => {
   const { userId, id } = useParams();
   const [note, setNote] = useState('');
-
+  const [loader, setLoader] = useState(true);
   const [user, loading] = useAuthState(auth);
 
   useEffect(() => {
+    setLoader(true);
     const noteRef = firestore.collection(userId).doc(id).get();
-    noteRef.then((d) => setNote(d.data())).catch((e) => e);
+    noteRef
+      .then((d) => {
+        setNote(d.data());
+        setLoader(false);
+      })
+      .catch((e) => e);
   }, [userId, id]);
 
-  if (loading) return <Loader />;
-  console.log(user);
+  if (loading || loader) return <Loader />;
+  if (!note) return <Error />;
+
   return user ? (
     <Box>
       <Box className='editor-header'>
