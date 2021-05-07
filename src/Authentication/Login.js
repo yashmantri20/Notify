@@ -64,7 +64,7 @@ const Login = () => {
       .sendPasswordResetEmail(email)
       .then(() => {
         toast({
-          title: 'Pease Check your mail',
+          title: 'Please Check your mail',
           status: 'success',
           duration: 4000,
           isClosable: true,
