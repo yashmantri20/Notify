@@ -22,7 +22,7 @@ Notify is a web app that serves as your notetaker, pocket notebook, to-do list, 
 
 ```
 Email: test@gmail.com
-Password: Test@12345
+Password: Test12345
 ```
 
 ## Contributing
