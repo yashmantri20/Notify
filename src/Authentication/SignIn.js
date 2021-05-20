@@ -6,6 +6,7 @@ const SignIn = ({
   setPassword,
   setToggle,
   signInWithGoogle,
+  testLogin,
   signIn,
   signUp,
 }) => {
@@ -61,6 +62,10 @@ const SignIn = ({
           </Button>
           <Button className='login-btn' onClick={signUp}>
             Sign Up
+          </Button>
+
+          <Button className='login-btn' onClick={testLogin}>
+            Test Account
           </Button>
         </Flex>
       </Box>
