@@ -67,6 +67,7 @@
 .editor-fullscreen {
   margin: auto;
   padding-right: 8px;
+  z-index: 999;
 }
 
 .all-notes {

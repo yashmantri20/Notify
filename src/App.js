@@ -4,10 +4,12 @@ import SingleNote from './SingleNote/SingleNote';
 import Home from './Home/Home';
 import './App.css';
 import Error from './Error404/Error';
+import GithubRibbon from './utils/GithubRibbon';
 
 const App = () => {
   return (
     <Router>
+      <GithubRibbon />
       <Switch>
         <Route exact path='/' component={Home} />
         <Route exact path='/note/:userId/:id' component={SingleNote} />
