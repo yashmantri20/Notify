@@ -102,4 +102,8 @@
     width: 300px;
     height: 300px;
   }
+
+  .ribbon{
+    display: none;
+  }
 }
